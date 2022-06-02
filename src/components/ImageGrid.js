@@ -177,8 +177,11 @@ export default function ImageGrid(props) {
   }
 
   const handleAddImageToResults = (image) => {
-    let submit_url = 'https://vbs.itec.aau.at:9443/api/v1/submit?session='+props.sessionID
-    +'&item='+image.split('/')[1].split('.')[0]
+    let keyframe = image.split('.')[0]
+    let video_id = keyframe.substring(4, 9)
+    let frame_id = keyframe.substring(keyframe.indexOf("_") + 1, keyframe.lastIndexOf("_"))
+    let submit_url = 'https://vbs.videobrowsing.org:443/api/v1/submit?session='+props.sessionID
+    +'&item='+video_id+'&shot='+frame_id
     console.log('Request: '+submit_url);
     fetch(submit_url)
 			.then(response => response.json())
@@ -239,7 +242,7 @@ export default function ImageGrid(props) {
       <GridList cellHeight={'auto'} cols={props.cols} spacing={6} classes={{ root: classes.gridList }}>
         {showedImages.map((image) => (
           <GridListTile key={image} onClick={handleClick(image)} classes={{tile:classes.imageContainer}}>
-            <img src={`/LSC_Thumbnail/${image}`} alt={image} className={classes.image} />
+            <img src={`/keyframes_webp/${image.substring(4, 9)}/${image.substring(0, image.lastIndexOf('.')) + ".webp"}`} alt={image} className={classes.image} />
           </GridListTile>
         ))}
       </GridList>

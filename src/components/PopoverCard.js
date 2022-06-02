@@ -96,7 +96,7 @@ export default function PopverCard(props) {
 		>
 			<div className={classes.card}>
 
-				<img src={`/LSC_Thumbnail/${props.selectedImage}`} className={classes.image} />
+				<img src={`/keyframes_webp/${props.selectedImage.substring(4, 9)}/${props.selectedImage.substring(0, props.selectedImage.lastIndexOf('.')) + ".webp"}`} className={classes.image} />
 
 				<div className={classes.filenameAndAddButton}>
 					<Typography variant="body2" component="p" className={classes.filename} >

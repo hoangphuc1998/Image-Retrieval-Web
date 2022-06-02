@@ -103,7 +103,7 @@ export default function Results(props) {
 								{props.results.map((image, index) => (
 									<GridItem key={image} className={classes.gridItem}>
 										<Card className={classes.card}>
-											<img src={`/LSC_Thumbnail/${image}`} className={classes.image}
+											<img src={`/keyframes_webp/${image.substring(4, 9)}/${image.substring(0, image.lastIndexOf('.')) + ".webp"}`} className={classes.image}
 												onDragStart={(e) => { e.preventDefault(); }} />
 
 											<CardContent className={classes.content}>

@@ -122,10 +122,11 @@ export default function App() {
 
   const filterByCaption = (caption, numImages) => {
     const truncatedSteps = removeFollowingSteps()
-    return axios.get(`/server/query_by_caption/${caption}/cosine/${numImages}`)
-      .then(res => {
-        updateSteps(truncatedSteps, activeStep, methods.caption, { caption: caption, numImages: numImages }, res.data.filenames)
-      })
+    return axios.post(`http://thevncore-lab.mooo.com:20679/api/search`, {text: caption})
+          .then(res => {
+            console.log(res)
+            updateSteps(truncatedSteps, activeStep, methods.caption, {caption: caption, numImages: numImages}, res.data.reply.shots)
+          })
   }
 
   const filterByLocations = (locations) => {
